@@ -3,7 +3,7 @@
 
 'use strict';
 
-var iotHubTransport = require('azure-iot-device-mqtt').Mqtt;
+var Protocol = require('azure-iot-device-mqtt').Mqtt;
 // Uncomment one of these transports and then change it in fromConnectionString to test other transports
 // var Protocol = require('azure-iot-device-amqp').AmqpWs;
 // var Protocol = require('azure-iot-device-http').Http;
@@ -30,7 +30,7 @@ var connectionString = argv.connstr;
 
 console.log(connectionString);
 
-var hubClient = Client.fromConnectionString(connectionString, iotHubTransport);
+var hubClient = Client.fromConnectionString(connectionString, Protocol);
 
 hubClient.open(function (err) {
     if (err) {
@@ -48,24 +48,22 @@ hubClient.open(function (err) {
 
                 var cmd = "open";
                 var patch = {
-                    "mode": "control",
-                    "attr": {
-                        "doorStatus": cmd
-                    }
+                    fanSpeed: 10,
+                    doorStatus: cmd
                 };
 
                 const intervalObj = setInterval(() => {
-                    patch.attr.doorStatus= (patch.attr.doorStatus == "open" ? "close" : "open");
+                    patch.doorStatus= (patch.doorStatus == "open" ? "close" : "open");
 
                     // send the patch
                     twin.properties.reported.update(patch, function (err) {
                         if (err) {
-                            console.log('twin error' + patch.attr.doorStatus);
+                            console.log('twin error' + patch.doorStatus);
                         } else {
-                            console.log('twin state reported ' + patch.attr.doorStatus);
+                            console.log('twin state reported ' + patch.doorStatus);
                         }
                     });
-                }, 1000);
+                }, 2000);
             }
         });
     }

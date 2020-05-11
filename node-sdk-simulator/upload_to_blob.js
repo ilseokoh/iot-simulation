@@ -30,7 +30,7 @@ var connectionString = argv.connstr;
 
 console.log(connectionString);
 
-var hubClient = Client.fromConnectionString(connectionString, iotHubTransport);
+var client = Client.fromConnectionString(connectionString, iotHubTransport);
 
 function uploadFile() {
     var date = new Date().getTime();
@@ -60,7 +60,7 @@ function uploadFile() {
     });
   }
 
-hubClient.open(function (err) {
+client.open(function (err) {
     if (err) {
         console.error('Could not connect: ' + err.message);
     } else {

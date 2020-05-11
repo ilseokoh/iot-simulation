@@ -1,0 +1,20 @@
+{
+  "name": "sdk-simulator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "run-simulation.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "azure-iot-device": "^1.15.0",
+    "azure-iot-device-amqp": "^1.12.2",
+    "azure-iot-device-http": "^1.12.2",
+    "azure-iot-device-mqtt": "^1.14.0",
+    "child_process": "^1.0.2",
+    "line-reader": "^0.4.0",
+    "yargs": "^15.3.1"
+  }
+}

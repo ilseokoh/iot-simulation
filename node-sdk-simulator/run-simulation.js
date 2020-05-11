@@ -18,8 +18,11 @@ var argv = require('yargs')
     })
     .argv;
 
-var filename = argv.ids;
+var filename = argv.connstr;
 var jsfilename = argv.simulator;
+
+console.log(filename);
+console.log(jsfilename);
 
 function sleep(time) {
     const d1 = new Date();
