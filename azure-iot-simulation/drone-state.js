@@ -43,7 +43,7 @@ var properties = {
     Firmware: "1.0",
     Model: "P-96",
     status: "flying",
-    battery: 70
+    battery: 70.0
 };
 
 /**
@@ -105,9 +105,11 @@ function main(context, previousState, previousProperties) {
     // Fluctuate altitude between given variation constant by more or less
     state.altitude = vary(AverageAltitude, AltitudeVariation, AverageAltitude - AltitudeVariation, AverageAltitude + AltitudeVariation).toFixed(DecimalPrecision);
 
+    var remainBattery = properties.battery - 0.01;
+    if (remainBattery < 10.0) remainBattery = 90.0;
     // return 하지 않고 updateState 호출
     updateState(state);
-    updateProperty(20, properties.battery);
+    updateProperty(remainBattery, properties.battery);
     //return state;
 }
 

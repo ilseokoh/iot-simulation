@@ -17,7 +17,7 @@ var properties = {
     Firmware: "1.0",
     Model: "P-96",
     status: "flying",
-    battery: 70
+    battery: 70.0
 };
 
 /**

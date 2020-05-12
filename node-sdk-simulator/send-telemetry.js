@@ -57,7 +57,9 @@ var connectCallback = function (err) {
       var message = new Message(data);
       message.properties.add('temperatureAlert', (temperature > 28) ? 'true' : 'false');
       console.log('Sending message: ' + message.getData());
+
       client.sendEvent(message, printResultFor('send'));
+      
     }, 2000);
 
     client.on('error', function (err) {
